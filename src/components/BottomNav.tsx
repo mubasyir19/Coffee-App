@@ -99,12 +99,12 @@ export default function BottomNav() {
               <path
                 d="M9 9C11.2091 9 13 7.20914 13 5C13 2.79086 11.2091 1 9 1C6.79086 1 5 2.79086 5 5C5 7.20914 6.79086 9 9 9Z"
                 stroke="currentcolor"
-                stroke-width="1.5"
+                strokeWidth="1.5"
               />
               <path
                 d="M17 16.5C17 18.985 17 21 9 21C1 21 1 18.985 1 16.5C1 14.015 4.582 12 9 12C13.418 12 17 14.015 17 16.5Z"
                 stroke="currentcolor"
-                stroke-width="1.5"
+                strokeWidth="1.5"
               />
             </svg>
 
