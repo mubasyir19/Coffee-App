@@ -13,7 +13,7 @@ export default function BottomNav() {
         <li>
           <Link
             href={`/home`}
-            className={`${pathname === "/home" ? "text-emerald-500" : "text-gray-400"}`}
+            className={`${pathname === "/home" ? "text-green-700" : "text-gray-400"}`}
           >
             <svg
               width="20"
@@ -44,7 +44,7 @@ export default function BottomNav() {
         <li>
           <Link
             href={`/menu`}
-            className={`${pathname === "/menu" ? "text-emerald-500" : "text-gray-400"}`}
+            className={`${pathname === "/menu" ? "text-green-700" : "text-gray-400"}`}
           >
             <svg
               width="22"
@@ -65,7 +65,7 @@ export default function BottomNav() {
         <li>
           <Link
             href={`/order`}
-            className={`${pathname === "/order" ? "text-emerald-500" : "text-gray-400"}`}
+            className={`${pathname === "/order" ? "text-green-700" : "text-gray-400"}`}
           >
             <svg
               width="16"
@@ -86,7 +86,7 @@ export default function BottomNav() {
         <li>
           <Link
             href={`/profile`}
-            className={`${pathname === "/profile" ? "text-emerald-500" : "text-gray-400"}`}
+            className={`${pathname === "/profile" ? "text-green-700" : "text-gray-400"}`}
           >
             <svg
               width="18"
