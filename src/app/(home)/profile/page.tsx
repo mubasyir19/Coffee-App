@@ -54,9 +54,9 @@ export default function ProfilePage() {
           </Link>
         </div>
       </div>
-      <div className="bg-redBum-light mt-6 w-full rounded-xl">
+      <div className="mt-6 w-full rounded-xl bg-redBum-light">
         <div className="rounded-xl bg-redBum px-6 py-2">
-          <p className="text-center text-sm font-semibold text-white">
+          <p className="text-center text-xs font-semibold text-white">
             Undang teman dan dapatkan Voucher 50%
           </p>
         </div>
