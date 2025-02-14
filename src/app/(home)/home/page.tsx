@@ -1,9 +1,18 @@
+import Image from "next/image";
 import React from "react";
 
 export default function HomePage() {
   return (
     <main className="bg-[#f4f4f4]">
-      <section className="h-60 w-full bg-greenBum"></section>
+      <section className="h-64 w-full bg-greenBum">
+        <Image
+          src={`/images/banner.png`}
+          width={1024}
+          height={800}
+          alt="banner"
+          className="h-60 w-full"
+        />
+      </section>
       <section className="relative -mt-10 h-full rounded-t-3xl bg-white px-4 pb-28 pt-16">
         <div className="absolute inset-x-0 -top-6 mx-auto flex w-11/12 items-center justify-between rounded-xl bg-white px-6 py-4 shadow-xl">
           <p className="font-semibold text-black">Hi, Mahdy</p>
