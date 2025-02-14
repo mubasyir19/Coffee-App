@@ -1,11 +1,12 @@
+import ProductCard from "@/components/ProductCard";
 import React from "react";
 
 export default function MenuPage() {
   return (
-    <main className="bg-white pb-28 pt-8">
+    <main className="bg-white pt-8">
       <section className="px-4">
         <div className="grid grid-cols-2 rounded-full border border-gray-200 bg-gray-100 p-1">
-          <button className="rounded-full bg-red-500 py-2 text-center">
+          <button className="rounded-full bg-green-700 py-2 text-center">
             <p className="text-xs font-medium text-white">Dine in</p>
           </button>
           <button className="rounded-full py-2 text-center">
@@ -14,18 +15,9 @@ export default function MenuPage() {
         </div>
       </section>
       <section className="mt-4 flex">
-        <div className="h-screen w-20 bg-gray-100">
-          <button className="w-full border-l-4 border-red-500 bg-white p-2 text-start text-xs text-red-500">
-            Combo Hemat
-          </button>
-          <button className="w-full border-l-4 border-gray-100 bg-gray-100 p-2 text-start text-xs text-gray-500">
-            Kopi Signature
-          </button>
-          <button className="w-full border-l-4 border-gray-100 bg-gray-100 p-2 text-start text-xs text-gray-500">
-            Kopi Kreasi Lokal
-          </button>
-          <button className="w-full border-l-4 border-gray-100 bg-gray-100 p-2 text-start text-xs text-gray-500">
-            Jiwa Toast
+        <div className="sticky top-0 h-screen w-20 bg-gray-100 pb-28">
+          <button className="w-full border-l-4 border-green-700 bg-white p-2 text-start text-xs text-green-700">
+            Kopi Kreasi
           </button>
           <button className="w-full border-l-4 border-gray-100 bg-gray-100 p-2 text-start text-xs text-gray-500">
             Non-Coffee
@@ -33,100 +25,51 @@ export default function MenuPage() {
           <button className="w-full border-l-4 border-gray-100 bg-gray-100 p-2 text-start text-xs text-gray-500">
             Tea
           </button>
-          <button className="w-full border-l-4 border-gray-100 bg-gray-100 p-2 text-start text-xs text-gray-500">
-            1 Liter
-          </button>
         </div>
-        <div className="w-full px-2">
-          <p className="my-5 text-base font-semibold text-black">Combo Hemat</p>
+        <div className="w-full px-2 pb-28">
+          <p className="my-5 text-base font-semibold text-black">Kopi Kreasi</p>
           <div className="grid grid-cols-2 gap-4">
-            <div
-              id="product"
-              className="rounded-xl border border-gray-200 px-2 pb-2 pt-14"
-            >
-              <p className="text-base font-semibold text-black">
-                Combo Jiwa Toast
-              </p>
-              <div className="mt-3 flex items-center justify-between">
-                <p className="text-xs font-medium text-black">Rp20.000</p>
-                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-red-500 p-1 text-lg text-white">
-                  +
-                </div>
-              </div>
-            </div>
-            <div
-              id="product"
-              className="rounded-xl border border-gray-200 px-2 pb-2 pt-14"
-            >
-              <p className="text-base font-semibold text-black">
-                Combo Asik Berdua
-              </p>
-              <div className="mt-3 flex items-center justify-between">
-                <p className="text-xs font-medium text-black">Rp20.000</p>
-                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-red-500 p-1 text-lg text-white">
-                  +
-                </div>
-              </div>
-            </div>
-            <div
-              id="product"
-              className="rounded-xl border border-gray-200 px-2 pb-2 pt-14"
-            >
-              <p className="text-base font-semibold text-black">
-                Tiga Toast Lebih Hemat
-              </p>
-              <div className="mt-3 flex items-center justify-between">
-                <p className="text-xs font-medium text-black">Rp72.000</p>
-                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-red-500 p-1 text-lg text-white">
-                  +
-                </div>
-              </div>
-            </div>
+            <ProductCard
+              sourceImage="/images/coffee-milk.png"
+              title="Kopi Susu Gula Aren"
+              price={10000}
+            />
+            <ProductCard
+              sourceImage="/images/coffee-milk.png"
+              title="Kopi Susu Karamel"
+              price={12000}
+            />
+            <ProductCard
+              sourceImage="/images/coffee-milk.png"
+              title="Kopi Susu Hazelnut"
+              price={12000}
+            />
           </div>
-          <p className="my-5 text-base font-semibold text-black">
-            Kopi Signature
-          </p>
+          <p className="my-5 text-base font-semibold text-black">Non-Coffee</p>
           <div className="grid grid-cols-2 gap-4">
-            <div
-              id="product"
-              className="rounded-xl border border-gray-200 px-2 pb-2 pt-14"
-            >
-              <p className="text-base font-semibold text-black">Kopi Susu</p>
-              <div className="mt-3 flex items-center justify-between">
-                <p className="text-xs font-medium text-black">Rp20.000</p>
-                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-red-500 p-1 text-lg text-white">
-                  +
-                </div>
-              </div>
-            </div>
-            <div
-              id="product"
-              className="rounded-xl border border-gray-200 px-2 pb-2 pt-14"
-            >
-              <p className="text-base font-semibold text-black">
-                Kopi Susu Karamel
-              </p>
-              <div className="mt-3 flex items-center justify-between">
-                <p className="text-xs font-medium text-black">Rp20.000</p>
-                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-red-500 p-1 text-lg text-white">
-                  +
-                </div>
-              </div>
-            </div>
-            <div
-              id="product"
-              className="rounded-xl border border-gray-200 px-2 pb-2 pt-14"
-            >
-              <p className="text-base font-semibold text-black">
-                Kopi Susu Hazelnut
-              </p>
-              <div className="mt-3 flex items-center justify-between">
-                <p className="text-xs font-medium text-black">Rp72.000</p>
-                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-red-500 p-1 text-lg text-white">
-                  +
-                </div>
-              </div>
-            </div>
+            <ProductCard
+              sourceImage="/images/chocolate-milk.png"
+              title="Es Coklat Susu"
+              price={10000}
+            />
+            <ProductCard
+              sourceImage="/images/taro-milk2.png"
+              title="Es Taro Susu"
+              price={10000}
+            />
+            <ProductCard
+              sourceImage="/images/matcha-milk.png"
+              title="Es Matcha Susu"
+              price={10000}
+            />
+          </div>
+          <p className="my-5 text-base font-semibold text-black">Tea</p>
+          <div className="grid grid-cols-2 gap-4">
+            <ProductCard
+              sourceImage="/images/ice-lemon-tea.png"
+              title="Es Teh Lemon"
+              price={6000}
+            />
           </div>
         </div>
       </section>
