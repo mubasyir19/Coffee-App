@@ -3,11 +3,11 @@ import React from "react";
 
 export default function ProfilePage() {
   return (
-    <main className="bg-white px-4 pb-28">
+    <main className="h-full bg-white px-4 pb-28">
       <div id="title" className="pt-8">
         <h1 className="text-2xl font-bold text-greenBum">BumBer Coffee</h1>
       </div>
-      <div
+      {/* <div
         id="profile"
         className="mt-4 flex w-full items-center justify-between rounded-xl border border-gray-300 p-4 shadow-lg"
       >
@@ -53,8 +53,43 @@ export default function ProfilePage() {
             </svg>
           </Link>
         </div>
+      </div> */}
+      <div
+        id="profile"
+        className="mt-4 flex w-full items-center justify-between rounded-xl border border-gray-300 p-4 shadow-lg"
+      >
+        <div className="flex items-center gap-2">
+          <svg
+            width="18"
+            height="22"
+            viewBox="0 0 18 22"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="mx-auto h-8 w-8 text-center"
+          >
+            <path
+              d="M9 9C11.2091 9 13 7.20914 13 5C13 2.79086 11.2091 1 9 1C6.79086 1 5 2.79086 5 5C5 7.20914 6.79086 9 9 9Z"
+              stroke="currentcolor"
+              strokeWidth="1.5"
+            />
+            <path
+              d="M17 16.5C17 18.985 17 21 9 21C1 21 1 18.985 1 16.5C1 14.015 4.582 12 9 12C13.418 12 17 14.015 17 16.5Z"
+              stroke="currentcolor"
+              strokeWidth="1.5"
+            />
+          </svg>
+          <p className="text-sm font-medium text-black">Pelanggan</p>
+        </div>
+        <div className="">
+          <Link
+            href={`#`}
+            className="rounded-lg bg-greenBum px-2 py-1 text-xs font-medium text-white"
+          >
+            Login disini
+          </Link>
+        </div>
       </div>
-      <div className="mt-6 w-full rounded-xl bg-redBum-light">
+      {/* <div className="mt-6 w-full rounded-xl bg-redBum-light">
         <div className="rounded-xl bg-redBum px-6 py-2">
           <p className="text-center text-xs font-semibold text-white">
             Undang teman dan dapatkan Voucher 50%
@@ -80,8 +115,8 @@ export default function ProfilePage() {
             </svg>
           </div>
         </div>
-      </div>
-      <div className="mt-8 flex flex-col gap-y-3 rounded-xl border border-gray-200 px-4 py-6 shadow-lg">
+      </div> */}
+      {/* <div className="mt-8 flex flex-col gap-y-3 rounded-xl border border-gray-200 px-4 py-6 shadow-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-x-2">
             <div className="mx-auto flex h-8 w-8 items-center justify-center rounded-full bg-greenBum">
@@ -309,7 +344,7 @@ export default function ProfilePage() {
             />
           </svg>
         </div>
-      </div>
+      </div> */}
       <div className="mt-8 flex flex-col gap-y-3 rounded-xl border border-gray-200 px-4 py-6 shadow-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-x-2">
