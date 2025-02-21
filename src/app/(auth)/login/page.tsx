@@ -56,7 +56,7 @@ export default function LoginPage() {
         </form>
         <p className="mt-2 text-center text-sm text-black">
           Belum punya akun?{" "}
-          <Link href={`#`} className="font-medium text-green-400">
+          <Link href={`/register`} className="font-medium text-green-400">
             Daftar
           </Link>
         </p>
