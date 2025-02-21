@@ -82,7 +82,7 @@ export default function ProfilePage() {
         </div>
         <div className="">
           <Link
-            href={`#`}
+            href={`/login`}
             className="rounded-lg bg-greenBum px-2 py-1 text-xs font-medium text-white"
           >
             Login disini
