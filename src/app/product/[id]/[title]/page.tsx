@@ -6,11 +6,9 @@ import { useParams, useRouter } from "next/navigation";
 import React from "react";
 
 export default function DetailProductPage() {
-  const params = useParams();
-  const title = params?.title
-    ? decodeURIComponent(params.title as string)
-    : "Produk";
+  const { id, title } = useParams();
   const router = useRouter();
+  // console.log("ini parameter = ", params);
 
   return (
     <main className="relative">
@@ -27,13 +25,10 @@ export default function DetailProductPage() {
       </section>
       <section className="px-4 py-20">
         <DetailProductCard
-          title={title}
+          id={id as string}
+          title={title as string}
           description="Perpaduan manisnya berry, jasmine, dan lime yang menyegarkan"
         />
-        {/* <DetailProductCard
-          title="Ice Shaken Jasmine Berry 10k"
-          description="Perpaduan manisnya berry, jasmine, dan lime yang menyegarkan"
-        /> */}
       </section>
       <section className="fixed bottom-0 left-0 right-0 mx-auto max-w-md rounded-t-3xl border-x-2 border-t-2 border-slate-300 bg-white p-4">
         <div className="flex justify-between">

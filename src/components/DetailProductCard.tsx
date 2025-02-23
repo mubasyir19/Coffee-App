@@ -1,16 +1,18 @@
 import React from "react";
 
 interface DetailProductCardProps {
+  id: string;
   title: string;
   description: string;
 }
 
 export default function DetailProductCard({
+  id,
   title,
   description,
 }: DetailProductCardProps) {
   return (
-    <div className="rounded-xl bg-white p-4 shadow-lg">
+    <div key={id} className="rounded-xl bg-white p-4 shadow-lg">
       <div className="h-60 w-full bg-gray-400"></div>
       <h1 className="mt-2 text-center text-2xl font-semibold text-black">
         {title}
