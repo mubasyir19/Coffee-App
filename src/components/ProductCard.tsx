@@ -1,5 +1,8 @@
+"use client";
+
 import { priceFormat } from "@/utils/priceFormat";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 interface ProductCardProps {
@@ -13,6 +16,8 @@ export default function ProductCard({
   title,
   price,
 }: ProductCardProps) {
+  const router = useRouter();
+
   return (
     <div id="product" className="rounded-xl border border-gray-200 px-2 pb-2">
       <Image
@@ -26,7 +31,10 @@ export default function ProductCard({
         <p className="text-base font-semibold text-black">{title}</p>
         <div className="flex items-center justify-between">
           <p className="text-xs font-medium text-black">{priceFormat(price)}</p>
-          <button className="flex h-5 w-5 items-center justify-center rounded-full bg-green-700 p-1 text-lg text-white">
+          <button
+            onClick={() => router.push(`/menu/${title}`)}
+            className="flex h-5 w-5 items-center justify-center rounded-full bg-green-700 p-1 text-lg text-white"
+          >
             +
           </button>
         </div>
