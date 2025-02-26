@@ -1,6 +1,7 @@
 "use client";
 
 import ProductCard from "@/components/ProductCard";
+import { categories, products } from "@/services/data";
 import React from "react";
 
 export default function MenuPage() {
@@ -45,62 +46,30 @@ export default function MenuPage() {
           </button>
         </div>
         <div className="w-full px-2 pb-28">
-          <p
-            id="Kopi-Kreasi"
-            className="my-5 text-base font-semibold text-black"
-          >
-            Kopi Kreasi
-          </p>
-          <div className="grid grid-cols-2 gap-4">
-            <ProductCard
-              sourceImage="/images/coffee-milk.png"
-              title="Kopi Susu Gula Aren"
-              price={10000}
-            />
-            <ProductCard
-              sourceImage="/images/coffee-milk.png"
-              title="Kopi Susu Karamel"
-              price={12000}
-            />
-            <ProductCard
-              sourceImage="/images/coffee-milk.png"
-              title="Kopi Susu Hazelnut"
-              price={12000}
-            />
-          </div>
-          <p
-            id="Non-Coffee"
-            className="my-5 text-base font-semibold text-black"
-          >
-            Non-Coffee
-          </p>
-          <div className="grid grid-cols-2 gap-4">
-            <ProductCard
-              sourceImage="/images/chocolate-milk.png"
-              title="Es Coklat Susu"
-              price={10000}
-            />
-            <ProductCard
-              sourceImage="/images/taro-milk2.png"
-              title="Es Taro Susu"
-              price={10000}
-            />
-            <ProductCard
-              sourceImage="/images/matcha-milk.png"
-              title="Es Matcha Susu"
-              price={10000}
-            />
-          </div>
-          <p id="Tea" className="my-5 text-base font-semibold text-black">
-            Tea
-          </p>
-          <div className="grid grid-cols-2 gap-4">
-            <ProductCard
-              sourceImage="/images/ice-lemon-tea.png"
-              title="Es Teh Lemon"
-              price={6000}
-            />
-          </div>
+          {categories.map((category) => (
+            <div key={category.id}>
+              <p
+                id="Kopi-Kreasi"
+                className="my-5 text-base font-semibold text-black"
+              >
+                {category.name}
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                {products
+                  .filter((product) => product.categoryID === category.id)
+                  .map((product) => (
+                    <div key={product.id}>
+                      <ProductCard
+                        id={product.id}
+                        sourceImage={product.image}
+                        title={product.name}
+                        price={product.price}
+                      />
+                    </div>
+                  ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
     </main>
