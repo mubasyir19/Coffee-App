@@ -1,7 +1,16 @@
+"use client";
+
 import ProductCard from "@/components/ProductCard";
 import React from "react";
 
 export default function MenuPage() {
+  const scrollToTag = (id: string) => {
+    const tag = document.getElementById(id);
+    if (tag) {
+      tag.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <main className="bg-white pt-8">
       <section className="px-4">
@@ -16,18 +25,32 @@ export default function MenuPage() {
       </section>
       <section className="mt-4 flex">
         <div className="sticky top-0 h-screen w-20 bg-gray-100 pb-28">
-          <button className="w-full border-l-4 border-green-700 bg-white p-2 text-start text-xs text-green-700">
+          <button
+            onClick={() => scrollToTag("Kopi-Kreasi")}
+            className="w-full border-l-4 border-green-700 bg-white p-2 text-start text-xs text-green-700"
+          >
             Kopi Kreasi
           </button>
-          <button className="w-full border-l-4 border-gray-100 bg-gray-100 p-2 text-start text-xs text-gray-500">
+          <button
+            onClick={() => scrollToTag("Non-Coffee")}
+            className="w-full border-l-4 border-gray-100 bg-gray-100 p-2 text-start text-xs text-gray-500"
+          >
             Non-Coffee
           </button>
-          <button className="w-full border-l-4 border-gray-100 bg-gray-100 p-2 text-start text-xs text-gray-500">
+          <button
+            onClick={() => scrollToTag("Tea")}
+            className="w-full border-l-4 border-gray-100 bg-gray-100 p-2 text-start text-xs text-gray-500"
+          >
             Tea
           </button>
         </div>
         <div className="w-full px-2 pb-28">
-          <p className="my-5 text-base font-semibold text-black">Kopi Kreasi</p>
+          <p
+            id="Kopi-Kreasi"
+            className="my-5 text-base font-semibold text-black"
+          >
+            Kopi Kreasi
+          </p>
           <div className="grid grid-cols-2 gap-4">
             <ProductCard
               sourceImage="/images/coffee-milk.png"
@@ -45,7 +68,12 @@ export default function MenuPage() {
               price={12000}
             />
           </div>
-          <p className="my-5 text-base font-semibold text-black">Non-Coffee</p>
+          <p
+            id="Non-Coffee"
+            className="my-5 text-base font-semibold text-black"
+          >
+            Non-Coffee
+          </p>
           <div className="grid grid-cols-2 gap-4">
             <ProductCard
               sourceImage="/images/chocolate-milk.png"
@@ -63,7 +91,9 @@ export default function MenuPage() {
               price={10000}
             />
           </div>
-          <p className="my-5 text-base font-semibold text-black">Tea</p>
+          <p id="Tea" className="my-5 text-base font-semibold text-black">
+            Tea
+          </p>
           <div className="grid grid-cols-2 gap-4">
             <ProductCard
               sourceImage="/images/ice-lemon-tea.png"
