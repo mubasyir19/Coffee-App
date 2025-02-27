@@ -26,30 +26,21 @@ export default function MenuPage() {
       </section>
       <section className="mt-4 flex">
         <div className="sticky top-0 h-screen w-20 bg-gray-100 pb-28">
-          <button
-            onClick={() => scrollToTag("Kopi-Kreasi")}
-            className="w-full border-l-4 border-green-700 bg-white p-2 text-start text-xs text-green-700"
-          >
-            Kopi Kreasi
-          </button>
-          <button
-            onClick={() => scrollToTag("Non-Coffee")}
-            className="w-full border-l-4 border-gray-100 bg-gray-100 p-2 text-start text-xs text-gray-500"
-          >
-            Non-Coffee
-          </button>
-          <button
-            onClick={() => scrollToTag("Tea")}
-            className="w-full border-l-4 border-gray-100 bg-gray-100 p-2 text-start text-xs text-gray-500"
-          >
-            Tea
-          </button>
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => scrollToTag(category.name)}
+              className="w-full border-l-4 border-green-700 bg-white p-2 text-start text-xs text-green-700"
+            >
+              {category.name}
+            </button>
+          ))}
         </div>
         <div className="w-full px-2 pb-28">
           {categories.map((category) => (
             <div key={category.id}>
               <p
-                id="Kopi-Kreasi"
+                id={category.name}
                 className="my-5 text-base font-semibold text-black"
               >
                 {category.name}
