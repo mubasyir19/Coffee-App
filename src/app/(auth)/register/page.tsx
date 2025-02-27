@@ -4,9 +4,22 @@ import Link from "next/link";
 import React from "react";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
+import useRegister from "@/hooks/customer/useRegister";
+import LoadingPopUp from "@/components/LoadingPopUp";
+import ErrorPopUp from "@/components/ErrorPopUp";
 
 export default function RegisterPage() {
   const router = useRouter();
+
+  const {
+    formData,
+    error,
+    loading,
+    handleChange,
+    handleSubmit,
+    isModalOpen,
+    closeModal,
+  } = useRegister();
 
   return (
     <main className="telative h-full w-full bg-[#f4f4f4]">
@@ -29,6 +42,8 @@ export default function RegisterPage() {
             <input
               type="text"
               name="fullname"
+              value={formData.fullname}
+              onChange={handleChange}
               placeholder="Tulis nama lengkapmu"
               className="w-full rounded-lg border-2 border-gray-200 px-4 py-2 text-sm focus:border-green-400 focus:outline-none"
             />
@@ -43,6 +58,8 @@ export default function RegisterPage() {
             <input
               type="text"
               name="username"
+              value={formData.username}
+              onChange={handleChange}
               placeholder="Tulis username"
               className="w-full rounded-lg border-2 border-gray-200 px-4 py-2 text-sm focus:border-green-400 focus:outline-none"
             />
@@ -57,6 +74,8 @@ export default function RegisterPage() {
             <input
               type="email"
               name="email"
+              value={formData.email}
+              onChange={handleChange}
               placeholder="Your email"
               className="w-full rounded-lg border-2 border-gray-200 px-4 py-2 text-sm focus:border-green-400 focus:outline-none"
             />
@@ -71,6 +90,8 @@ export default function RegisterPage() {
             <input
               type="text"
               name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleChange}
               placeholder="Tulis nomor telepon"
               className="w-full rounded-lg border-2 border-gray-200 px-4 py-2 text-sm focus:border-green-400 focus:outline-none"
             />
@@ -85,6 +106,8 @@ export default function RegisterPage() {
             <input
               type="text"
               name="address"
+              value={formData.address}
+              onChange={handleChange}
               placeholder="Tulis alamatmu"
               className="w-full rounded-lg border-2 border-gray-200 px-4 py-2 text-sm focus:border-green-400 focus:outline-none"
             />
@@ -99,6 +122,8 @@ export default function RegisterPage() {
             <input
               type="password"
               name="password"
+              value={formData.password}
+              onChange={handleChange}
               placeholder="Your password"
               className="w-full rounded-lg border-2 border-gray-200 px-4 py-2 text-sm focus:border-green-400 focus:outline-none"
             />
@@ -119,6 +144,7 @@ export default function RegisterPage() {
           </div>
           <button
             type="submit"
+            onClick={handleSubmit}
             className="w-full rounded-full bg-gray-300 py-3 text-sm font-medium text-gray-500"
           >
             Daftar
@@ -137,6 +163,10 @@ export default function RegisterPage() {
       >
         <ArrowLeftIcon className="h-4 w-4" />
       </button>
+      {loading && <LoadingPopUp />}
+      {error && (
+        <ErrorPopUp isOpen={isModalOpen} onClose={closeModal} message={error} />
+      )}
     </main>
   );
 }

@@ -10,7 +10,7 @@ interface RegisterForm {
   password: string;
 }
 
-export const Register = () => {
+export default function useRegister() {
   const router = useRouter();
   const [formData, setFormData] = useState<RegisterForm>({
     fullname: "",
@@ -23,6 +23,8 @@ export const Register = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -30,12 +32,13 @@ export const Register = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     setLoading(true);
     setError(null);
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BACKEND_COFFEE}/login`,
+        `${process.env.NEXT_PUBLIC_API_BACKEND_COFFEE}/customer/register`,
         {
           method: "POST",
           headers: {
@@ -47,27 +50,35 @@ export const Register = () => {
 
       const data = await response.json();
 
-      if (response.ok) {
-        router.push(`/login`);
-        setLoading(false);
-      } else if (response.status === 401) {
-        setError(data.message);
-        // setIsModalOpen(true);
+      if (!response.ok) {
+        throw new Error(data.message || "Registrasi gagal.");
       }
+
+      setIsModalOpen(true);
+      setTimeout(() => {
+        setIsModalOpen(false);
+        router.push("/login");
+      }, 1000);
     } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError("Error Login");
-      }
+      setError("Terjadi kesalahan.");
+      setIsModalOpen(true);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setError(null);
   };
 
   return {
     formData,
     error,
+    isModalOpen,
     loading,
     handleChange,
     handleSubmit,
+    closeModal,
   };
-};
+}
