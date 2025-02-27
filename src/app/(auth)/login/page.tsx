@@ -4,9 +4,21 @@ import Link from "next/link";
 import React from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
+import useLogin from "@/hooks/customer/useLogin";
+import LoadingPopUp from "@/components/LoadingPopUp";
+import ErrorPopUp from "@/components/ErrorPopUp";
 
 export default function LoginPage() {
   const router = useRouter();
+  const {
+    formData,
+    error,
+    isModalOpen,
+    loading,
+    handleChange,
+    handleLogin,
+    closeModal,
+  } = useLogin();
 
   return (
     <main className="telative h-screen w-full bg-[#f4f4f4]">
@@ -18,18 +30,23 @@ export default function LoginPage() {
             Silahkan masuk dengan akun yang telah anda buat.
           </p>
         </div>
-        <form className="mx-auto mt-8 flex flex-col gap-y-4">
+        <form
+          onSubmit={handleLogin}
+          className="mx-auto mt-8 flex flex-col gap-y-4"
+        >
           <div className="">
             <label
-              htmlFor="email"
+              htmlFor="username"
               className="block text-base font-medium text-black"
             >
-              Email
+              Username
             </label>
             <input
-              type="email"
-              name="email"
-              placeholder="Your email"
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              placeholder="Your username"
               className="w-full rounded-lg border-2 border-gray-200 px-4 py-2 text-sm focus:border-green-400 focus:outline-none"
             />
           </div>
@@ -43,6 +60,8 @@ export default function LoginPage() {
             <input
               type="password"
               name="password"
+              value={formData.password}
+              onChange={handleChange}
               placeholder="Your password"
               className="w-full rounded-lg border-2 border-gray-200 px-4 py-2 text-sm focus:border-green-400 focus:outline-none"
             />
@@ -67,6 +86,10 @@ export default function LoginPage() {
       >
         <XMarkIcon className="h-3 w-3" />
       </button>
+      {loading && <LoadingPopUp />}
+      {error && (
+        <ErrorPopUp isOpen={isModalOpen} onClose={closeModal} message={error} />
+      )}
     </main>
   );
 }

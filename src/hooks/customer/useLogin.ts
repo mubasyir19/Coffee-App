@@ -1,23 +1,16 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import Cookies from "js-cookie";
 
-interface RegisterForm {
-  fullname: string;
+interface LoginForm {
   username: string;
-  email: string;
-  phoneNumber: string;
-  address: string;
   password: string;
 }
 
-export default function useRegister() {
+export default function useLogin() {
   const router = useRouter();
-  const [formData, setFormData] = useState<RegisterForm>({
-    fullname: "",
+  const [formData, setFormData] = useState<LoginForm>({
     username: "",
-    email: "",
-    phoneNumber: "",
-    address: "",
     password: "",
   });
   const [error, setError] = useState<string | null>(null);
@@ -30,7 +23,7 @@ export default function useRegister() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
     setLoading(true);
@@ -38,7 +31,7 @@ export default function useRegister() {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BACKEND_COFFEE}/customer/register`,
+        `${process.env.NEXT_PUBLIC_API_BACKEND_COFFEE}/customer/login`,
         {
           method: "POST",
           headers: {
@@ -50,14 +43,22 @@ export default function useRegister() {
 
       const data = await response.json();
 
+      //   console.log("ini result = ", data);
       if (!response.ok) {
-        throw new Error(data.message || "Registrasi gagal.");
+        throw new Error(data.message || "Login gagal.");
       }
+
+      const tokenBase64 = btoa(data.access_token);
+      Cookies.set("authToken", tokenBase64, {
+        expires: 7,
+        secure: true,
+        sameSite: "strict",
+      });
 
       setIsModalOpen(true);
       setTimeout(() => {
         setIsModalOpen(false);
-        router.push("/login");
+        router.push("/home");
       }, 1000);
     } catch (error) {
       if (error instanceof Error) {
@@ -80,7 +81,7 @@ export default function useRegister() {
     isModalOpen,
     loading,
     handleChange,
-    handleSubmit,
+    handleLogin,
     closeModal,
   };
 }
