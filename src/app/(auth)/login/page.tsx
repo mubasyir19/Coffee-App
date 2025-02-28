@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import useLogin from "@/hooks/customer/useLogin";
 import LoadingPopUp from "@/components/LoadingPopUp";
 import ErrorPopUp from "@/components/ErrorPopUp";
+import SuccessPopUp from "@/components/SuccessPopUp";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -86,6 +87,11 @@ export default function LoginPage() {
       >
         <XMarkIcon className="h-3 w-3" />
       </button>
+      <SuccessPopUp
+        isOpen={isModalOpen}
+        message="Berhasil Daftar akun"
+        onClose={closeModal}
+      />
       {loading && <LoadingPopUp />}
       {error && (
         <ErrorPopUp isOpen={isModalOpen} onClose={closeModal} message={error} />
