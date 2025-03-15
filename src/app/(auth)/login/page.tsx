@@ -89,7 +89,7 @@ export default function LoginPage() {
       </button>
       <SuccessPopUp
         isOpen={isModalOpen}
-        message="Berhasil Daftar akun"
+        message="Berhasil Login"
         onClose={closeModal}
       />
       {loading && <LoadingPopUp />}
