@@ -69,7 +69,7 @@ export default function LoginPage() {
           </div>
           <button
             type="submit"
-            className="w-full rounded-full bg-gray-300 py-3 text-sm font-medium text-gray-500"
+            className="w-full rounded-full bg-green-500 py-3 text-sm font-medium text-white"
           >
             Masuk
           </button>
