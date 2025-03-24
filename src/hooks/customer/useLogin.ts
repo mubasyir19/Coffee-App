@@ -48,7 +48,7 @@ export default function useLogin() {
         throw new Error(data.message || "Login gagal.");
       }
 
-      const tokenBase64 = btoa(data.access_token);
+      const tokenBase64 = btoa(data.data);
       Cookies.set("authToken", tokenBase64, {
         expires: 7,
         secure: true,
