@@ -1,9 +1,11 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 export default function OrderPage() {
   const [openTab, setOpenTab] = useState("ongoing");
+  const router = useRouter();
 
   const switchTab = (TabName: string) => {
     setOpenTab(TabName);
@@ -37,7 +39,10 @@ export default function OrderPage() {
               <p className="text-xs text-gray-400">
                 Kamu bisa cek pesanan yang sedang diproses di sini
               </p>
-              <button className="mt-2 rounded-full bg-green-700 px-4 py-2 text-sm font-medium text-white">
+              <button
+                onClick={() => router.push("/menu")}
+                className="mt-2 rounded-full bg-green-700 px-4 py-2 text-sm font-medium text-white"
+              >
                 Pesan Sekarang
               </button>
             </div>
@@ -53,7 +58,10 @@ export default function OrderPage() {
               <p className="text-xs text-gray-400">
                 Kamu bisa cek pesanan yang sedang diproses di sini
               </p>
-              <button className="mt-2 rounded-full bg-green-700 px-4 py-2 text-sm font-medium text-white">
+              <button
+                onClick={() => router.push("/menu")}
+                className="mt-2 rounded-full bg-green-700 px-4 py-2 text-sm font-medium text-white"
+              >
                 Pesan Sekarang
               </button>
             </div>
