@@ -1,13 +1,22 @@
 "use client";
 
+import LogoutPopUp from "@/components/LogoutPopUp";
 import useAuth from "@/hooks/user/useAuth";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 export default function ProfilePage() {
   const { user, isVerified } = useAuth();
+  const [islogoutPopup, setIsLogoutPopUp] = useState<boolean>(false);
 
-  console.log("ini auth ", user);
+  const handleClickLogout = () => {
+    setIsLogoutPopUp(true);
+  };
+
+  const handleCancel = () => {
+    setIsLogoutPopUp(false);
+  };
+
   return (
     <section className="h-full bg-white px-4 pb-28">
       <div id="title" className="pt-8">
@@ -460,7 +469,7 @@ export default function ProfilePage() {
             </div>
             <p className="text-sm font-medium text-greenBum">Keluar</p>
           </div>
-          <button>
+          <button onClick={handleClickLogout}>
             <svg
               width="9"
               height="16"
@@ -486,6 +495,9 @@ export default function ProfilePage() {
         </p>
         <p className="mt-8 text-center text-xs text-gray-400">Made by Maher</p>
       </div>
+      {islogoutPopup && (
+        <LogoutPopUp isOpen={islogoutPopup} onClose={handleCancel} />
+      )}
     </section>
   );
 }

@@ -23,7 +23,6 @@ export default function useAuth() {
 
     if (token) {
       const jwtToken = atob(token);
-      console.log("ini token nya = ", jwtToken);
 
       const fetchUser = async () => {
         try {
@@ -37,15 +36,11 @@ export default function useAuth() {
             },
           );
 
-          console.log("ini response nya = ", response);
-
           if (!response.ok) {
             throw new Error("User not authenticated");
           }
 
-          const data = await response.json();
           setIsVerified(true);
-          console.log("data response = ", data);
           const payload = jwtDecode<PayloadAccount>(jwtToken);
           setUser(payload);
         } catch (error) {
