@@ -1,54 +1,54 @@
 export const categories = [
   {
-    id: "w0egjegg-203rj-3rh3-28fh2-32t23ut9823",
+    id: "accbaf61-5698-4b78-b768-1463b37f5e5a",
     name: "Kopi Kreasi",
   },
   {
-    id: "e389gh4g-485ho-58hb-734gg-398g34gb4gn",
+    id: "268a8dd9-bead-4e01-8e2a-8edbee712396",
     name: "Non-Coffee",
   },
   {
-    id: "3ugb4rnm-mho83-g476-n5050-932fn3gn34g",
+    id: "8ecfca69-663f-4fdb-892f-bbb8d8e21ebc",
     name: "Tea",
   },
 ];
 
 export const products = [
   {
-    id: "4ng4g440-nv3y8-3f83-b374g-74gh4b5hhnf",
-    categoryID: "w0egjegg-203rj-3rh3-28fh2-32t23ut9823",
+    id: "d72dfcda-da67-46f8-bfe0-4e99a765065a",
+    categoryID: "accbaf61-5698-4b78-b768-1463b37f5e5a",
     name: "Kopi Susu Gula Aren",
     description: "Perpaduan Kopi, susu, dan manisnya gula aren",
     price: 12000,
     image: "/images/coffee-milk.png",
   },
   {
-    id: "4875h45g-3fh38-3fg3-3gh3g-mv3bbv38e33",
-    categoryID: "w0egjegg-203rj-3rh3-28fh2-32t23ut9823",
+    id: "6b0badd6-ba11-481a-be03-4d99b1d0ed2c",
+    categoryID: "accbaf61-5698-4b78-b768-1463b37f5e5a",
     name: "Kopi Susu Gula Karamel",
     description: "Perpaduan Kopi, susu, dan manisnya karamel",
     price: 12000,
     image: "/images/coffee-milk.png",
   },
   {
-    id: "21r2f2fg-xwdwg-v47v-lp58j-2wd28f340gg",
-    categoryID: "w0egjegg-203rj-3rh3-28fh2-32t23ut9823",
+    id: "64a96039-1870-4ff7-b22e-3b78ed007771",
+    categoryID: "accbaf61-5698-4b78-b768-1463b37f5e5a",
     name: "Kopi Susu Gula Hazelnut",
     description: "Perpaduan Kopi, susu, dan gurihnya Hazelnut",
     price: 12000,
     image: "/images/coffee-milk.png",
   },
   {
-    id: "95h8g4h5-3gb3g-b323-o04it-3bg834gb45g",
-    categoryID: "e389gh4g-485ho-58hb-734gg-398g34gb4gn",
+    id: "d213a160-8fc2-4c56-a710-b6eb482dd8a5",
+    categoryID: "268a8dd9-bead-4e01-8e2a-8edbee712396",
     name: "Es Coklat Susu",
     description: "Perpaduan bubuk coklat asli dengan susu murni",
     price: 12000,
     image: "/images/chocolate-milk.png",
   },
   {
-    id: "48g4gb34-vb384-3g4t-b4g84-7gt5g4bggbcw",
-    categoryID: "e389gh4g-485ho-58hb-734gg-398g34gb4gn",
+    id: "a4b79db8-bb9e-4d09-9716-0666bfab799e",
+    categoryID: "268a8dd9-bead-4e01-8e2a-8edbee712396",
     name: "Es Taro Susu",
     description: "Perpaduan bubuk taro dengan susu murni",
     price: 12000,
@@ -63,8 +63,8 @@ export const products = [
     image: "/images/matcha-milk.png",
   },
   {
-    id: "t3ytj4y9-it3u8-ut34-t34ty-m3498g34g055",
-    categoryID: "3ugb4rnm-mho83-g476-n5050-932fn3gn34g",
+    id: "8d8eafb9-3abd-48d6-ac21-db6ddaf893be",
+    categoryID: "8ecfca69-663f-4fdb-892f-bbb8d8e21ebc",
     name: "Es Teh Lemon",
     description: "Perpaduan teh dengan perasan lemon segar",
     price: 12000,

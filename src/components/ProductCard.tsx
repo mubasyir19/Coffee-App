@@ -34,7 +34,7 @@ export default function ProductCard({
         <div className="flex items-center justify-between">
           <p className="text-xs font-medium text-black">{priceFormat(price)}</p>
           <button
-            onClick={() => router.push(`/menu/${id}/${title}`)}
+            onClick={() => router.push(`/product/${id}/${title}`)}
             className="flex h-5 w-5 items-center justify-center rounded-full bg-green-700 p-1 text-lg text-white"
           >
             +

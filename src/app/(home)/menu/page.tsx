@@ -1,7 +1,8 @@
 "use client";
 
+// import OrderPopUp from "@/components/OrderPopUp";
 import ProductCard from "@/components/ProductCard";
-import { categories, products } from "@/services/data";
+import { categories, products } from "@/datas/data";
 import React from "react";
 
 export default function MenuPage() {
@@ -13,7 +14,7 @@ export default function MenuPage() {
   };
 
   return (
-    <main className="bg-white pt-8">
+    <div className="bg-white pt-8">
       <section className="px-4">
         <div className="grid grid-cols-2 rounded-full border border-gray-200 bg-gray-100 p-1">
           <button className="rounded-full bg-green-700 py-2 text-center">
@@ -25,7 +26,7 @@ export default function MenuPage() {
         </div>
       </section>
       <section className="mt-4 flex">
-        <div className="sticky top-0 h-screen w-20 bg-gray-100 pb-28">
+        <div className="sticky top-0 h-screen w-20 bg-gray-100 pb-40">
           {categories.map((category) => (
             <button
               key={category.id}
@@ -36,7 +37,7 @@ export default function MenuPage() {
             </button>
           ))}
         </div>
-        <div className="w-full px-2 pb-28">
+        <div className="w-full px-2 pb-40">
           {categories.map((category) => (
             <div key={category.id}>
               <p
@@ -63,6 +64,7 @@ export default function MenuPage() {
           ))}
         </div>
       </section>
-    </main>
+      {/* <OrderPopUp /> */}
+    </div>
   );
 }

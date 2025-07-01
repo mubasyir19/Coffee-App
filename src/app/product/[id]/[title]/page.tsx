@@ -1,14 +1,85 @@
 "use client";
 
+import Counter from "@/components/Counter";
 import DetailProductCard from "@/components/DetailProductCard";
+import useProductDetail from "@/hooks/product/useProductDetail";
+import { priceFormat } from "@/utils/priceFormat";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import { useParams, useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
+
+interface ProductItem {
+  id: string;
+  productName: string;
+  price: number;
+}
+
+interface TransactionDetails {
+  totalItem: number;
+  totalPrice: number;
+}
+
+interface CartOrder {
+  item: ProductItem;
+  transaction: TransactionDetails;
+}
 
 export default function DetailProductPage() {
+  const [totalItem, setTotalItem] = useState<number>(1);
+
   const { id, title } = useParams();
   const router = useRouter();
   // console.log("ini parameter = ", params);
+  const productTitle = decodeURIComponent(title as string);
+  const productId = decodeURIComponent(id as string);
+
+  const { product } = useProductDetail(productId);
+  const totalPrice = Number(product?.Price) * totalItem;
+
+  const onCounterChange = (value: number) => {
+    console.log("counter : ", value);
+    setTotalItem(value);
+  };
+
+  const onOrder = () => {
+    const newData: CartOrder = {
+      item: {
+        id: product?.ID ?? "",
+        productName: product?.Name ?? "",
+        price: Number(product?.Price) ?? 0,
+      },
+      transaction: {
+        totalItem: totalItem,
+        totalPrice: totalPrice,
+      },
+    };
+
+    const existingOrder = localStorage.getItem("Order");
+    let orderData: CartOrder[] = [];
+
+    if (existingOrder) {
+      try {
+        const parsedData = JSON.parse(existingOrder);
+        if (Array.isArray(parsedData)) {
+          orderData = parsedData;
+        } else {
+          console.warn(
+            "Existing 'Order' in localStorage is not an array. Resetting.",
+          );
+          orderData = [];
+        }
+      } catch (error) {
+        console.error("Error parsing existing order data:", error);
+        console.warn("Could not parse 'Order' in localStorage. Resetting.");
+        orderData = [];
+      }
+    }
+
+    orderData.push(newData);
+
+    localStorage.setItem("Order", JSON.stringify(orderData));
+    router.push("/menu");
+  };
 
   return (
     <main className="relative">
@@ -21,32 +92,45 @@ export default function DetailProductPage() {
             <ArrowLeftIcon className="h-5 w-3 text-black" />
           </span>
         </button>
-        <p className="text-center text-lg font-semibold text-black">{title}</p>
+        <p className="text-center text-lg font-semibold text-black">
+          {productTitle}
+        </p>
       </section>
       <section className="px-4 py-20">
         <DetailProductCard
           id={id as string}
-          title={title as string}
+          title={productTitle}
           description="Perpaduan manisnya berry, jasmine, dan lime yang menyegarkan"
         />
       </section>
       <section className="fixed bottom-0 left-0 right-0 mx-auto max-w-md rounded-t-3xl border-x-2 border-t-2 border-slate-300 bg-white p-4">
         <div className="flex justify-between">
-          <p className="text-lg font-semibold text-black">Rp10.000</p>
-          <div className="flex items-center gap-x-4">
-            <button className="flex h-5 w-5 items-center justify-center rounded-full border border-gray-600 text-lg font-medium">
-              -
-            </button>
-            <p className="text-sm font-medium text-black">1</p>
-            <button className="flex h-5 w-5 items-center justify-center rounded-full border border-gray-600 text-lg font-medium">
-              +
-            </button>
-          </div>
+          <p className="text-lg font-semibold text-black">
+            {priceFormat(totalPrice)}
+          </p>
+          <Counter onValueChange={onCounterChange} />
         </div>
-        <button className="mt-3 w-full rounded-full bg-greenBum py-3 text-center text-sm font-medium text-white">
+        <button
+          onClick={onOrder}
+          className="mt-3 w-full rounded-full bg-greenBum py-3 text-center text-sm font-medium text-white"
+        >
           Tambah ke Keranjang
         </button>
       </section>
     </main>
   );
 }
+
+// async function getProduct(productId: string): Promise<Product | undefined> {
+//   const response = await fetch(
+//     `${process.env.NEXT_PUBLIC_API_BACKEND_COFFEE}/id/${productId}`,
+//   );
+
+//   if (!response.ok) {
+//     return undefined;
+//   }
+
+//   const product = await response.json();
+
+//   return product;
+// }
