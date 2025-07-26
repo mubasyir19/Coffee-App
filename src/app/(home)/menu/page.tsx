@@ -2,10 +2,12 @@
 
 // import OrderPopUp from "@/components/OrderPopUp";
 import ProductCard from "@/components/ProductCard";
-import { categories, products } from "@/datas/data";
+import useCategory from "@/hooks/category/useCategory";
 import React from "react";
 
 export default function MenuPage() {
+  const { categories } = useCategory();
+
   const scrollToTag = (id: string) => {
     const tag = document.getElementById(id);
     if (tag) {
@@ -27,7 +29,7 @@ export default function MenuPage() {
       </section>
       <section className="mt-4 flex">
         <div className="sticky top-0 h-screen w-20 bg-gray-100 pb-40">
-          {categories.map((category) => (
+          {categories?.map((category) => (
             <button
               key={category.id}
               onClick={() => scrollToTag(category.name)}
@@ -38,7 +40,7 @@ export default function MenuPage() {
           ))}
         </div>
         <div className="w-full px-2 pb-40">
-          {categories.map((category) => (
+          {categories?.map((category) => (
             <div key={category.id}>
               <p
                 id={category.name}
@@ -47,18 +49,16 @@ export default function MenuPage() {
                 {category.name}
               </p>
               <div className="grid grid-cols-2 gap-4">
-                {products
-                  .filter((product) => product.categoryID === category.id)
-                  .map((product) => (
-                    <div key={product.id}>
-                      <ProductCard
-                        id={product.id}
-                        sourceImage={product.image}
-                        title={product.name}
-                        price={product.price}
-                      />
-                    </div>
-                  ))}
+                {category.products.map((product) => (
+                  <div key={product.id}>
+                    <ProductCard
+                      id={product.id}
+                      sourceImage={product.image_product}
+                      title={product.name}
+                      price={Number(product.price)}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           ))}

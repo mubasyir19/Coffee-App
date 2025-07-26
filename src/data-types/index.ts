@@ -9,12 +9,12 @@ export interface PayloadAccount {
 }
 
 export interface Product {
-  ID: string;
-  Name: string;
-  CategoryID: string;
-  Description: string;
-  Price: string;
-  Image: string;
+  id: string;
+  name: string;
+  category_id: string;
+  description: string;
+  price: string;
+  image_product: string;
 }
 
 interface ProductItem {

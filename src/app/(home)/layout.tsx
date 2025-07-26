@@ -23,7 +23,7 @@ export default function RootLayout({
       <body
         className={`${poppins.className} relative mx-auto max-w-md bg-slate-100`}
       >
-        <main>{children}</main>
+        {children}
         <BottomNav />
       </body>
     </html>

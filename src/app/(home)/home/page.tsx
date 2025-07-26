@@ -11,6 +11,7 @@ export default function HomePage() {
           height={800}
           alt="banner"
           className="h-60 w-full"
+          priority
         />
       </section>
       <section className="relative -mt-10 h-full rounded-t-3xl bg-white px-4 pb-28 pt-16">
