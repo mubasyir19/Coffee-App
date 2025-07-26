@@ -20,7 +20,7 @@ export default function useProductDetail(productId: string) {
           `${process.env.NEXT_PUBLIC_API_BACKEND_COFFEE}/product/id/${productId}`,
         );
         const result = await response.json();
-        console.log("ini data response = ", result.data);
+        // console.log("ini data response = ", result.data);
         setProduct(result.data);
       } catch (error) {
         if (error instanceof Error) {

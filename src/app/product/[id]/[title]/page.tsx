@@ -29,24 +29,22 @@ export default function DetailProductPage() {
 
   const { id, title } = useParams();
   const router = useRouter();
-  // console.log("ini parameter = ", params);
   const productTitle = decodeURIComponent(title as string);
   const productId = decodeURIComponent(id as string);
 
   const { product } = useProductDetail(productId);
-  const totalPrice = Number(product?.Price) * totalItem;
+  const totalPrice = Number(product?.price) * totalItem;
 
   const onCounterChange = (value: number) => {
-    console.log("counter : ", value);
     setTotalItem(value);
   };
 
   const onOrder = () => {
     const newData: CartOrder = {
       item: {
-        id: product?.ID ?? "",
-        productName: product?.Name ?? "",
-        price: Number(product?.Price) ?? 0,
+        id: product?.id ?? "",
+        productName: product?.name ?? "",
+        price: Number(product?.price) ?? 0,
       },
       transaction: {
         totalItem: totalItem,
@@ -100,6 +98,7 @@ export default function DetailProductPage() {
         <DetailProductCard
           id={id as string}
           title={productTitle}
+          imageProduct={product?.image_product}
           description="Perpaduan manisnya berry, jasmine, dan lime yang menyegarkan"
         />
       </section>
@@ -120,17 +119,3 @@ export default function DetailProductPage() {
     </main>
   );
 }
-
-// async function getProduct(productId: string): Promise<Product | undefined> {
-//   const response = await fetch(
-//     `${process.env.NEXT_PUBLIC_API_BACKEND_COFFEE}/id/${productId}`,
-//   );
-
-//   if (!response.ok) {
-//     return undefined;
-//   }
-
-//   const product = await response.json();
-
-//   return product;
-// }
