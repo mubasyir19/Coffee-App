@@ -49,7 +49,7 @@ export default function MenuPage() {
                 {category.name}
               </p>
               <div className="grid grid-cols-2 gap-4">
-                {category.products.map((product) => (
+                {category.products?.map((product) => (
                   <div key={product.id}>
                     <ProductCard
                       id={product.id}
