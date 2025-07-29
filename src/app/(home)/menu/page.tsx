@@ -6,7 +6,7 @@ import useCategory from "@/hooks/category/useCategory";
 import React from "react";
 
 export default function MenuPage() {
-  const { categories } = useCategory();
+  const { categories, loading } = useCategory();
 
   const scrollToTag = (id: string) => {
     const tag = document.getElementById(id);
@@ -14,6 +14,14 @@ export default function MenuPage() {
       tag.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  if (loading) {
+    return (
+      <div className="">
+        <p className="text-center text-2xl text-black">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white pt-8">
