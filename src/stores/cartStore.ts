@@ -1,3 +1,4 @@
+// import { getTokenCookies } from "@/utils/token";
 import { create } from "zustand";
 
 interface CartItem {
@@ -14,6 +15,8 @@ interface CartState {
     totalAmount: number;
     items: CartItem[];
   };
+  isLoading: boolean;
+  fetchCart: (customerId: string) => void;
   addCart: (item: CartItem) => void;
   removeFromCart: (itemId: string) => void;
 }
@@ -24,6 +27,27 @@ const useCartStore = create<CartState>((set) => ({
     totalItems: 0,
     totalAmount: 0,
     items: [],
+  },
+  isLoading: false,
+  fetchCart: async (customerId) => {
+    set({ isLoading: true });
+    // const jwtToken = getTokenCookies();
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BACKEND_COFFEE}/cart?customerId=${customerId}`,
+        {
+          headers: {
+            // Authorization: `Bearer ${jwtToken}`
+          },
+        },
+      );
+      const data = await res.json();
+      set({ cart: data.data });
+    } catch (error) {
+      console.error("Fetch cart failed:", error);
+    } finally {
+      set({ isLoading: false });
+    }
   },
   addCart: (item) =>
     set((state) => {
