@@ -1,4 +1,6 @@
 // import { getTokenCookies } from "@/utils/token";
+import { Customer } from "@/types/auth";
+import { Product } from "@/types/product";
 import { create } from "zustand";
 
 interface CartItem {
@@ -8,12 +10,22 @@ interface CartItem {
   quantity: number;
 }
 
+const initialCustomer = {
+  id: "",
+  fullname: "",
+  username: "",
+  email: "",
+  phoneNumber: "",
+  address: "",
+};
+
 interface CartState {
   items: CartItem[];
   cart: {
     totalItems: number;
     totalAmount: number;
-    items: CartItem[];
+    customer: Customer;
+    products: Product[];
   };
   isLoading: boolean;
   fetchCart: (customerId: string) => void;
@@ -26,7 +38,8 @@ const useCartStore = create<CartState>((set) => ({
   cart: {
     totalItems: 0,
     totalAmount: 0,
-    items: [],
+    customer: initialCustomer,
+    products: [],
   },
   isLoading: false,
   fetchCart: async (customerId) => {

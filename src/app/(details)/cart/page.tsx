@@ -1,16 +1,27 @@
 "use client";
 
 import Counter from "@/components/Counter";
+import useCartStore from "@/stores/cartStore";
 import { priceFormat } from "@/utils/priceFormat";
+import { decodeToken, getTokenCookies } from "@/utils/token";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function CartPage() {
   const router = useRouter();
+  const token = getTokenCookies();
+  const payload = decodeToken(token as string);
 
   const [totalItem, setTotalItem] = useState<number>(1);
+  const { cart, fetchCart, isLoading } = useCartStore();
+
+  useEffect(() => {
+    if (payload?.user_id) {
+      fetchCart(payload.user_id);
+    }
+  }, [payload?.user_id, fetchCart]);
 
   const totalPrice = Number(12000) * totalItem;
 
@@ -53,8 +64,33 @@ export default function CartPage() {
               Tambah Menu
             </button>
           </div>
-          <div id="list-cart" className="mt-8">
-            <div id="item-cart" className="">
+          <div id="list-cart" className="mt-8 space-y-8">
+            {cart.products.map((item) => (
+              <div id="item-cart" key={item.id} className="">
+                <div className="flex items-center gap-4">
+                  <Image
+                    src={item.image_product}
+                    width={200}
+                    height={200}
+                    alt="photo-product"
+                    className="mx-auto size-12 object-cover"
+                  />
+                  <div className="flex-1">
+                    <p className="text-base font-semibold">{item.name}</p>
+                    <p className="mt-2 line-clamp-2 text-xs text-gray-400">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-5 flex items-center justify-between">
+                  <p className="text-sm font-semibold text-black">
+                    {priceFormat(item.total_price)}
+                  </p>
+                  <Counter onValueChange={onCounterChange} />
+                </div>
+              </div>
+            ))}
+            {/* <div id="item-cart" className="">
               <div className="flex items-center gap-4">
                 <Image
                   src={`/images/coffee-milk.png`}
@@ -76,7 +112,7 @@ export default function CartPage() {
                 </p>
                 <Counter onValueChange={onCounterChange} />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="rounded-xl bg-white p-6">
