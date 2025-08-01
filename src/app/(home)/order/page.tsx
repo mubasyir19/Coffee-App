@@ -46,6 +46,7 @@ export default function OrderPage() {
                 Pesan Sekarang
               </button>
             </div>
+            <div className="">{/* pesanan atau keranjanga disini */}</div>
           </>
         )}
         {openTab === "history" && (

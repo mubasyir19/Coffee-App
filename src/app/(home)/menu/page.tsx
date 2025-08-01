@@ -1,6 +1,6 @@
 "use client";
 
-// import OrderPopUp from "@/components/OrderPopUp";
+import OrderPopUp from "@/components/OrderPopUp";
 import ProductCard from "@/components/ProductCard";
 import useCategory from "@/hooks/category/useCategory";
 import React from "react";
@@ -72,7 +72,7 @@ export default function MenuPage() {
           ))}
         </div>
       </section>
-      {/* <OrderPopUp /> */}
+      <OrderPopUp />
     </div>
   );
 }

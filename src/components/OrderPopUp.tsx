@@ -1,6 +1,6 @@
 "use client";
 
-import { CartOrder } from "@/data-types";
+// import { CartOrder } from "@/data-types";
 import { priceFormat } from "@/utils/priceFormat";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -8,25 +8,23 @@ import React from "react";
 export default function OrderPopUp() {
   const router = useRouter();
 
-  const existingOrder = localStorage.getItem("Order");
-  let orderItem: CartOrder[] = [];
+  // const existingOrder = localStorage.getItem("Order");
+  // let orderItem: CartOrder[] = [];
 
-  orderItem = JSON.parse(existingOrder);
-  console.log("ini order item = ", orderItem.length);
-  const totalItem: number = orderItem.length;
-  let subTotalPrice: number = 0;
+  // orderItem = JSON.parse(existingOrder);
+  // console.log("ini order item = ", orderItem.length);
+  // const totalItem: number = orderItem.length;
+  // let subTotalPrice: number = 0;
 
-  for (const item of orderItem) {
-    subTotalPrice += item.transaction.totalPrice;
-  }
+  // for (const item of orderItem) {
+  //   subTotalPrice += item.transaction.totalPrice;
+  // }
 
   return (
     <div className="fixed bottom-20 left-1/2 flex w-full max-w-sm -translate-x-1/2 items-center justify-between rounded-full border-2 border-gray-200 bg-white p-4">
       <div className="">
         <p className="text-xs text-black">Total Harga</p>
-        <p className="text-sm font-bold text-black">
-          {priceFormat(subTotalPrice)}
-        </p>
+        <p className="text-sm font-bold text-black">{priceFormat(25000)}</p>
         {/* <p className="text-sm font-bold text-black">Rp21.000</p> */}
       </div>
       <button
@@ -35,7 +33,7 @@ export default function OrderPopUp() {
       >
         Lihat Pesananan
         <div className="absolute -top-3 right-0 rounded-xl bg-greenBum px-3 py-1 text-xs font-semibold text-white">
-          {totalItem}
+          {1}
         </div>
       </button>
     </div>

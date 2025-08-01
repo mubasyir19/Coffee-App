@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: "Tinggalkan jejak ceritakan kisah bumi dalam kopi",
 };
 
-export default function ProductLayout({
+export default function DetailsLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -22,7 +22,7 @@ export default function ProductLayout({
       <body
         className={`${poppins.className} relative mx-auto max-w-md bg-slate-100`}
       >
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );

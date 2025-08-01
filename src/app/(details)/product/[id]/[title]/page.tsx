@@ -80,7 +80,7 @@ export default function DetailProductPage() {
   };
 
   return (
-    <main className="relative">
+    <div className="relative">
       <section className="fixed left-0 right-0 top-0 w-full bg-white py-4">
         <button
           onClick={() => router.back()}
@@ -116,6 +116,6 @@ export default function DetailProductPage() {
           Tambah ke Keranjang
         </button>
       </section>
-    </main>
+    </div>
   );
 }
