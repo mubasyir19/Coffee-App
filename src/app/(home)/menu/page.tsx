@@ -46,9 +46,9 @@ export default async function MenuPage() {
                 {category.products?.map((product) => (
                   <div key={product.id}>
                     <ProductCard
-                      id={product.id}
                       sourceImage={product.image_product}
                       title={product.name}
+                      slug={product.slug}
                       price={Number(product.price)}
                     />
                   </div>

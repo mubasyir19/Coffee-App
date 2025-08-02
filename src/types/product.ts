@@ -1,6 +1,7 @@
 export interface ProductData {
   id: string;
   name: string;
+  slug: string;
   category_id: string;
   description: string;
   price: number;
