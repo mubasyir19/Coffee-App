@@ -1,27 +1,13 @@
-"use client";
-
 import OrderPopUp from "@/components/OrderPopUp";
 import ProductCard from "@/components/ProductCard";
-import useCategory from "@/hooks/category/useCategory";
+import { getCategories } from "@/services/categoryService";
+import { Category } from "@/types/category";
 import React from "react";
 
-export default function MenuPage() {
-  const { categories, loading } = useCategory();
+export default async function MenuPage() {
+  const categories = await getCategories();
 
-  const scrollToTag = (id: string) => {
-    const tag = document.getElementById(id);
-    if (tag) {
-      tag.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  if (loading) {
-    return (
-      <div className="">
-        <p className="text-center text-2xl text-black">Loading...</p>
-      </div>
-    );
-  }
+  console.log("ini list kategori dan product = ", categories);
 
   return (
     <div className="bg-white pt-8">
@@ -37,10 +23,10 @@ export default function MenuPage() {
       </section>
       <section className="mt-4 flex">
         <div className="sticky top-0 h-screen w-20 bg-gray-100 pb-40">
-          {categories?.map((category) => (
+          {categories?.data?.map((category: Category) => (
             <button
               key={category.id}
-              onClick={() => scrollToTag(category.name)}
+              // onClick={() => scrollToTag(category.name)}
               className="w-full border-l-4 border-green-700 bg-white p-2 text-start text-xs text-green-700"
             >
               {category.name}
@@ -48,7 +34,7 @@ export default function MenuPage() {
           ))}
         </div>
         <div className="w-full px-2 pb-40">
-          {categories?.map((category) => (
+          {categories?.data?.map((category: Category) => (
             <div key={category.id}>
               <p
                 id={category.name}

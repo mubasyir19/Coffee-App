@@ -1,4 +1,13 @@
-export interface Product {
+export interface ProductData {
+  id: string;
+  name: string;
+  category_id: string;
+  description: string;
+  price: number;
+  image_product: string;
+}
+
+export interface ProductCart {
   id: string;
   name: string;
   description: string;
