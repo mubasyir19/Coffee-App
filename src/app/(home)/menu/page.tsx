@@ -7,8 +7,6 @@ import React from "react";
 export default async function MenuPage() {
   const categories = await getCategories();
 
-  console.log("ini list kategori dan product = ", categories);
-
   return (
     <div className="bg-white pt-8">
       <section className="px-4">

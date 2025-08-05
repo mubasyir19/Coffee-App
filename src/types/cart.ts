@@ -1,9 +1,10 @@
 import { Customer } from "./auth";
-import { Product } from "./product";
+import { ProductCart } from "./product";
 
 export interface CartOrder {
+  id: string;
   total_amount: number;
   total_items: number;
   customer: Customer;
-  products: Product[];
+  products: ProductCart[];
 }

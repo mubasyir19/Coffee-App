@@ -1,33 +1,26 @@
 "use client";
 
-import Counter from "@/components/Counter";
+import ItemCart from "@/components/ItemCart";
 import useCartStore from "@/stores/cartStore";
 import { priceFormat } from "@/utils/priceFormat";
 import { decodeToken, getTokenCookies } from "@/utils/token";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 export default function CartPage() {
   const router = useRouter();
   const token = getTokenCookies();
   const payload = decodeToken(token as string);
 
-  const [totalItem, setTotalItem] = useState<number>(1);
-  const { cart, fetchCart, isLoading } = useCartStore();
+  const { cart, fetchCart } = useCartStore();
+  console.log("ini cart = ", cart);
 
   useEffect(() => {
     if (payload?.user_id) {
       fetchCart(payload.user_id);
     }
   }, [payload?.user_id, fetchCart]);
-
-  const totalPrice = Number(12000) * totalItem;
-
-  const onCounterChange = (value: number) => {
-    setTotalItem(value);
-  };
 
   return (
     <div className="relative bg-slate-100">
@@ -66,53 +59,15 @@ export default function CartPage() {
           </div>
           <div id="list-cart" className="mt-8 space-y-8">
             {cart.products.map((item) => (
-              <div id="item-cart" key={item.id} className="">
-                <div className="flex items-center gap-4">
-                  <Image
-                    src={item.image_product}
-                    width={200}
-                    height={200}
-                    alt="photo-product"
-                    className="mx-auto size-12 object-cover"
-                  />
-                  <div className="flex-1">
-                    <p className="text-base font-semibold">{item.name}</p>
-                    <p className="mt-2 line-clamp-2 text-xs text-gray-400">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-                <div className="mt-5 flex items-center justify-between">
-                  <p className="text-sm font-semibold text-black">
-                    {priceFormat(item.total_price)}
-                  </p>
-                  <Counter onValueChange={onCounterChange} />
-                </div>
-              </div>
+              <ItemCart
+                key={item.id}
+                cartId={cart.id}
+                customerId={cart.customer.id}
+                productId={item.id}
+                quantity={item.quantity}
+                totalPrice={item.total_price}
+              />
             ))}
-            {/* <div id="item-cart" className="">
-              <div className="flex items-center gap-4">
-                <Image
-                  src={`/images/coffee-milk.png`}
-                  width={200}
-                  height={200}
-                  alt="photo-product"
-                  className="mx-auto size-12 object-cover"
-                />
-                <div className="flex-1">
-                  <p className="text-base font-semibold">Kopi Susu Gula Aren</p>
-                  <p className="mt-2 line-clamp-2 text-xs text-gray-400">
-                    Perpaduan Kopi, susu, dan manisnya gula aren
-                  </p>
-                </div>
-              </div>
-              <div className="mt-5 flex items-center justify-between">
-                <p className="text-sm font-semibold text-black">
-                  {priceFormat(totalPrice)}
-                </p>
-                <Counter onValueChange={onCounterChange} />
-              </div>
-            </div> */}
           </div>
         </div>
         <div className="rounded-xl bg-white p-6">
@@ -121,13 +76,15 @@ export default function CartPage() {
             <div className="">
               <div className="flex items-center justify-between">
                 <p className="text-sm text-black">Subtotal</p>
-                <p className="text-sm text-black">{priceFormat(12000)}</p>
+                <p className="text-sm text-black">
+                  {priceFormat(cart.total_amount)}
+                </p>
               </div>
             </div>
             <div className="flex items-center justify-between">
               <p className="text-sm font-bold text-black">Total Pembayaran</p>
               <p className="text-sm font-bold text-black">
-                {priceFormat(12000)}
+                {priceFormat(cart.total_amount)}
               </p>
             </div>
           </div>
