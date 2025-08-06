@@ -37,7 +37,7 @@ interface CartState {
     productId: string,
     quantity: number,
   ) => void;
-  removeFromCart: (itemId: string) => void;
+  removeFromCart: (customerId: string, itemId: string) => void;
 }
 
 const useCartStore = create<CartState>((set) => ({
@@ -143,10 +143,44 @@ const useCartStore = create<CartState>((set) => ({
       set({ isLoading: false });
     }
   },
-  removeFromCart: (itemId) =>
-    set((state) => ({
-      items: state.items.filter((i) => i.id !== itemId),
-    })),
+  removeFromCart: async (customerId: string, itemId: string) => {
+    set({ isLoading: true });
+    // const jwtToken = getTokenCookies();
+    try {
+      await fetch(
+        `${process.env.NEXT_PUBLIC_API_BACKEND_COFFEE}/cart/delete/${itemId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${jwtToken}`,
+          },
+        },
+      );
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BACKEND_COFFEE}/cart?customerId=${customerId}`,
+        // {
+        //   headers: {
+        //     Authorization: `Bearer ${jwtToken}`,
+        //   },
+        // },
+      );
+      const data = await res.json();
+      set({ cart: data.data });
+    } catch (error) {
+      if (error instanceof Error) {
+        set({ error: error.message || "Failed to remove item" });
+      } else {
+        set({ error: "Failed to remove item" });
+      }
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+  // set((state) => ({
+  //   items: state.items.filter((i) => i.id !== itemId),
+  // })),
 }));
 
 export default useCartStore;

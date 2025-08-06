@@ -5,7 +5,7 @@ import useCartStore from "@/stores/cartStore";
 import { priceFormat } from "@/utils/priceFormat";
 import Image from "next/image";
 import React, { useState } from "react";
-
+import { TrashIcon } from "@heroicons/react/24/outline";
 interface ItemCartProps {
   cartId: string;
   customerId: string;
@@ -25,6 +25,7 @@ export default function ItemCart({
   const [total, setTotal] = useState<number>(totalPrice);
   const { product } = useProductDetail(productId);
   const updateCartItem = useCartStore((state) => state.updateItemCart);
+  const { removeFromCart } = useCartStore();
 
   const updateQuantity = (newCount: number) => {
     if (newCount < 1) return;
@@ -43,6 +44,10 @@ export default function ItemCart({
 
   const addCount = () => updateQuantity(count + 1);
   const minCount = () => updateQuantity(count - 1);
+
+  const handleDeleteItem = async () => {
+    await removeFromCart(customerId, cartId);
+  };
 
   return (
     <div id="item-cart" key={cartId} className="">
@@ -64,6 +69,9 @@ export default function ItemCart({
       <div className="mt-5 flex items-center justify-between">
         <p className="text-sm font-semibold text-black">{priceFormat(total)}</p>
         <div className="flex items-center gap-x-4">
+          <button onClick={handleDeleteItem}>
+            <TrashIcon className="size-4 text-red-500" />
+          </button>
           <button
             onClick={minCount}
             className="flex h-5 w-5 items-center justify-center rounded-full border border-gray-600 text-lg font-medium"
